@@ -33,12 +33,6 @@ HRESULT CGameObject::Init(void)
 		m_ppModel[nCnt] = nullptr;
 	}
 
-	////モデル読み込み
-	//m_ppModel[0] = CModel::Create("data\\MODEL\\object\\woodbox.x");
-
-	////位置設定
-	//m_ppModel[0]->SetPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-
 	//ファイル読み込み
 	LoadObj("data\\FILE\\object.txt");
 
