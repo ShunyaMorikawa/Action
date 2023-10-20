@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bg.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="game.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="tutorial.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bg.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="game.cpp" />

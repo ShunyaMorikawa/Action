@@ -15,6 +15,7 @@
 #include "player.h"
 #include "polygon.h"
 #include "gameobject.h"
+#include "bg.h"
 
 //========================================
 //マクロ定義
@@ -32,6 +33,7 @@ CLight *CGame::m_pLight = nullptr;			//ライトのポインタ
 CPlayer *CGame::m_pPlayer = nullptr;		//プレイヤーのポインタ
 CPolygon *CGame::m_pPolygon = nullptr;		//ポリゴンのポインタ
 CGameObject *CGame::m_pGameObject = nullptr;	//ゲーム内オブジェクト
+CBg *CGame::m_pBg = nullptr;					//背景のポインタ
 
 //========================================
 //コンストラクタ
@@ -127,7 +129,7 @@ void CGame::Uninit(void)
 		m_pPlayer = nullptr;
 	}
 	
-	if (m_pGameObject == nullptr)
+	if (m_pGameObject != nullptr)
 	{//ゲーム内オブジェクト破棄
 		m_pGameObject->Uninit();
 		m_pGameObject = nullptr;
@@ -141,7 +143,7 @@ void CGame::Update(void)
 {
 	//CInputKeyboard型のポインタ
 	CInputKeyboard *pInputKeyboard = nullptr;
-	pInputKeyboard = CManager::GetInputKeyboard();	//キーボードの情報取得
+	pInputKeyboard = CManager::GetInstance()->GetInputKeyboard();	//キーボードの情報取得
 
 #ifdef _DEBUG
 	if (pInputKeyboard->GetTrigger(DIK_F3) == true)

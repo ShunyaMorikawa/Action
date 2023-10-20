@@ -18,6 +18,7 @@ class CLight;
 class CPlayer;
 class CPolygon;
 class CGameObject;
+class CBg;
 
 //========================================
 //マクロ
@@ -55,6 +56,7 @@ private:
 	static CPlayer *m_pPlayer;			//プレイヤーのポインタ
 	static CPolygon *m_pPolygon;		//ポリゴンのポインタ
 	static CGameObject *m_pGameObject;	//ゲーム内オブジェクト
+	static CBg *m_pBg;					//背景のポインタ
 	bool m_bPause;						//ポーズ状態のON/OFF
 };
 
