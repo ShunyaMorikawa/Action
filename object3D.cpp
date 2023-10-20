@@ -169,8 +169,6 @@ void CObject3D::Draw(void)
 //========================================
 void CObject3D::SetVertex3D(void)
 {
-	D3DXVECTOR3 vec1, vec2, nor;
-
 	//頂点情報へのポインタ
 	VERTEX_3D *pVtx;
 
@@ -188,12 +186,6 @@ void CObject3D::SetVertex3D(void)
 	pVtx[1].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	pVtx[2].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	pVtx[3].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-
-	//外積
-	D3DXVec3Cross(&nor, &vec1, &vec2);
-
-	//法線を正規化する
-	D3DXVec3Normalize(&nor, &nor);
 
 	//頂点カラーの設定
 	pVtx[0].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);

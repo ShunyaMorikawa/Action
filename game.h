@@ -19,6 +19,7 @@ class CPlayer;
 class CPolygon;
 class CGameObject;
 class CBg;
+class CTime;
 
 //========================================
 //マクロ
@@ -57,6 +58,7 @@ private:
 	static CPolygon *m_pPolygon;		//ポリゴンのポインタ
 	static CGameObject *m_pGameObject;	//ゲーム内オブジェクト
 	static CBg *m_pBg;					//背景のポインタ
+	static CTime *m_pTime;				//タイムのポインタ
 	bool m_bPause;						//ポーズ状態のON/OFF
 };
 

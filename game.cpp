@@ -16,6 +16,7 @@
 #include "polygon.h"
 #include "gameobject.h"
 #include "bg.h"
+#include "time.h"
 
 //========================================
 //マクロ定義
@@ -34,6 +35,7 @@ CPlayer *CGame::m_pPlayer = nullptr;		//プレイヤーのポインタ
 CPolygon *CGame::m_pPolygon = nullptr;		//ポリゴンのポインタ
 CGameObject *CGame::m_pGameObject = nullptr;	//ゲーム内オブジェクト
 CBg *CGame::m_pBg = nullptr;					//背景のポインタ
+CTime *CGame::m_pTime = nullptr;				//タイムのポインタ
 
 //========================================
 //コンストラクタ
@@ -87,11 +89,10 @@ HRESULT CGame::Init(void)
 	{//初期化処理が失敗した場合
 		return -1;
 	}
-
-	//プレイヤーの生成
+	
 	if (m_pPlayer == nullptr)
-	{
-		m_pPlayer = new CPlayer;
+	{//プレイヤーの生成
+		m_pPlayer = CPlayer::Create();
 	}
 
 	//プレイヤーの初期化処理
@@ -99,11 +100,10 @@ HRESULT CGame::Init(void)
 	{//初期化処理が失敗した場合
 		return -1;
 	}
-
-	//ゲーム内オブジェクト
+	
 	if (m_pGameObject == nullptr)
-	{
-		m_pGameObject = new CGameObject;
+	{//ゲーム内オブジェクトの生成
+		m_pGameObject = CGameObject::Create();
 	}
 
 	//ゲーム内オブジェクトの初期化処理
@@ -112,6 +112,11 @@ HRESULT CGame::Init(void)
 		return -1;
 	}
 
+	if (m_pTime == nullptr)
+	{//ゲーム内オブジェクトの生成
+		m_pTime = CTime::Create();
+	}
+	
 	//ポーズの状態
 	m_bPause = false;
 
