@@ -45,8 +45,6 @@ HRESULT CGameObject::Init(void)
 //========================================
 void CGameObject::Uninit()
 {
-	//èIóπ
-	CModel::Uninit();
 }
 
 //========================================

@@ -15,6 +15,7 @@
 #include "motion.h"
 #include "model.h"
 #include "game.h"
+#include "effect.h"
 
 //========================================
 //É}ÉNÉçíËã`

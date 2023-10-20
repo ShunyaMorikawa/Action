@@ -9,6 +9,7 @@
 #include "main.h"
 #include "objectX.h"
 #include "model.h"
+#include "player.h"
 
 //========================================
 //マクロ定義
@@ -18,7 +19,7 @@
 //========================================
 //ゲーム内オブジェクトクラス
 //========================================
-class CGameObject : public CModel
+class CGameObject
 {
 public:
 	CGameObject();		//コンストラクタ
@@ -45,6 +46,7 @@ private:
 	//メンバ変数
 	CModel *m_ppModel[GAME_OBJ];	//モデルへのポインタ
 	CObjectX *m_pObjX;		//オブジェクトXのポインタ
+	CPlayer *m_pPlayer;		//プレイヤーのポインタ
 
 	D3DXVECTOR3 m_pos;
 
