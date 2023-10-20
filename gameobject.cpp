@@ -45,6 +45,7 @@ HRESULT CGameObject::Init(void)
 //========================================
 void CGameObject::Uninit()
 {
+	CModel::Uninit();
 }
 
 //========================================
@@ -59,13 +60,7 @@ void CGameObject::Update()
 //========================================
 void CGameObject::Draw()
 {
-	for (int nCntParts = 0; nCntParts < GAME_OBJ; nCntParts++)
-	{//モデルの描画(全パーツ)
-		if (m_ppModel[nCntParts] != nullptr)
-		{//m_apModelがnullptrの時
-			m_ppModel[nCntParts]->Draw();
-		}
-	}
+	CModel::Draw();
 }
 
 //========================================

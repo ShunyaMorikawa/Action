@@ -65,7 +65,6 @@ private:
 	D3DXVECTOR3 m_pos;		//位置
 	D3DXVECTOR3 m_move;		//移動量
 	D3DXVECTOR3 m_rot;		//向き
-	D3DXVECTOR3 m_vtxMin, m_vtxMax;	//モデルの最大、最小値
 
 	CModel *m_apModel[MAX_PARTS];	//モデルへのポインタ
 	CMotion *m_pMotion;		//モーションのポインタ

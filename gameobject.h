@@ -19,7 +19,7 @@
 //========================================
 //ゲーム内オブジェクトクラス
 //========================================
-class CGameObject
+class CGameObject : public CModel
 {
 public:
 	CGameObject();		//コンストラクタ
@@ -48,7 +48,10 @@ private:
 	CObjectX *m_pObjX;		//オブジェクトXのポインタ
 	CPlayer *m_pPlayer;		//プレイヤーのポインタ
 
+	D3DXMATRIX m_mtxWorld;			//ワールドマトリックス
+
 	D3DXVECTOR3 m_pos;
+	D3DXVECTOR3 m_rot;		//向き
 
 	int m_nNumModel;	//モデルの総数
 };
