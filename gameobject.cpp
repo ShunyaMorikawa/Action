@@ -5,6 +5,7 @@
 //
 //========================================
 #include "gameobject.h"
+#include "renderer.h"
 
 //========================================
 //コンストラクタ
@@ -28,13 +29,14 @@ CGameObject::~CGameObject()
 //========================================
 HRESULT CGameObject::Init(void)
 {
-	for (int nCnt = 0; nCnt < GAME_OBJ; nCnt++)
-	{
-		m_ppModel[nCnt] = nullptr;
-	}
+	//オブジェクト生成
+	m_ppModel[0] = CModel::Create("data\\MODEL\\object\\woodbox.x");
+
+	//パーツの位置(全パーツ分)
+	m_ppModel[0]->SetPosition(D3DXVECTOR3(0.0f, 12.5f, 0.0f));
 
 	//ファイル読み込み
-	LoadObj("data\\FILE\\object.txt");
+	//LoadObj("data\\FILE\\object.txt");
 
 	//成功を返す
 	return S_OK;
@@ -45,7 +47,8 @@ HRESULT CGameObject::Init(void)
 //========================================
 void CGameObject::Uninit()
 {
-	CModel::Uninit();
+	//オブジェクト(自分自身)の破棄
+	Release();
 }
 
 //========================================
@@ -60,7 +63,31 @@ void CGameObject::Update()
 //========================================
 void CGameObject::Draw()
 {
-	CModel::Draw();
+	//描画
+	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
+
+	//CRenderer型のポインタ
+	CRenderer *pRenderer = CManager::GetRenderer();
+
+	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
+
+	//位置取得
+	D3DXVECTOR3 pos = GetPosition();
+
+	//ワールドマトリックスの初期化
+	D3DXMatrixIdentity(&m_mtxWorld);
+
+	//向きを反映
+	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+	//位置を反映
+	D3DXMatrixTranslation(&mtxTrans, pos.x, pos.y, pos.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+	//ワールドマトリックスの設定
+	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 }
 
 //========================================

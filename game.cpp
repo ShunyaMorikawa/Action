@@ -139,6 +139,12 @@ void CGame::Uninit(void)
 		m_pGameObject->Uninit();
 		m_pGameObject = nullptr;
 	}
+
+	if (m_pTime != nullptr)
+	{//ƒ^ƒCƒ€”jŠü
+		m_pTime->Uninit();
+		m_pTime = nullptr;
+	}
 }
 
 //========================================
