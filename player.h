@@ -8,8 +8,6 @@
 #define _PLAYER_H_
 
 #include "main.h"
-#include "input.h"
-#include "manager.h"
 #include "model.h"
 #include "motion.h"
 
@@ -48,6 +46,12 @@ public:
 	void SetRot(D3DXVECTOR3 rot) { m_rot = rot; }		//向き設定
 	D3DXVECTOR3 GetRot(void) { return m_rot; }			//向き取得
 
+	D3DXVECTOR3 GetMove(void) { return m_move; }		//移動量取得
+	D3DXVECTOR3 GetposOld(void) { return m_posOld; }	//前回の位置取得
+
+	float GetWidth(void) { return m_fWidth; }
+	float GetHeight(void) { return m_fHeight; }
+
 	void ManagementMotion(void);
 
 private:
@@ -65,14 +69,17 @@ private:
 	D3DXVECTOR3 m_pos;		//位置
 	D3DXVECTOR3 m_move;		//移動量
 	D3DXVECTOR3 m_rot;		//向き
+	D3DXVECTOR3 m_posOld;
 
 	CModel *m_apModel[MAX_PARTS];	//モデルへのポインタ
 	CMotion *m_pMotion;		//モーションのポインタ
 	int m_apNumModel;		//モデル(パーツ)の総数
 	D3DXVECTOR3 m_RotDest;	//目的の向き
-	bool m_bJump;			//ジャンプ
-	bool m_bMove;			//移動
-	bool m_bWait;			//待機
+	float m_fHeight;		//高さ
+	float m_fWidth;		//幅
+	bool m_bJump;		//ジャンプ
+	bool m_bMove;		//移動
+	bool m_bWait;		//待機
 };
 
 #endif

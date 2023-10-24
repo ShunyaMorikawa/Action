@@ -16,6 +16,7 @@
 #include "model.h"
 #include "game.h"
 #include "effect.h"
+#include "gameobject.h"
 
 //========================================
 //マクロ定義
@@ -27,7 +28,8 @@
 #define PLAYER_DASH_SPEED			(2.0f)		//ダッシュ時の速さ
 #define PLAYER_JUMP		(95.0f)		//ジャンプ力の大きさ
 #define PLAYER_GRAVITY	(5.5f)		//重力
-
+#define PLAYER_WIDTH	(50.0f)		//幅
+#define PLAYER_HEIGHT	(50.0f)		//高さ
 #define MOTION_PATH	"data\\FILE\\player.txt"	//読み込むファイルのパス
 
 //========================================
@@ -38,6 +40,7 @@ CPlayer::CPlayer() :
 	m_pos(0.0f, 0.0f, 0.0f),		//位置
 	m_move(0.0f, 0.0f, 0.0f),		//移動量
 	m_rot(0.0f, 0.0f, 0.0f),		//向き
+	m_posOld(0.0f, 0.0f, 0.0f),		//前回の位置
 	m_nIdxTexture(0),				//テクスチャの番号
 	m_pMesh(nullptr),				//メッシュ(頂点情報)へのポインタ
 	m_pBuffMat(nullptr),			//マテリアルへのポインタ
@@ -46,7 +49,9 @@ CPlayer::CPlayer() :
 	m_RotDest(0.0f, 0.0f, 0.0f),	//目的の向き
 	m_bJump(false),
 	m_bMove(false),
-	m_bWait(false)
+	m_bWait(false),
+	m_fHeight(0.0f),
+	m_fWidth(0.0f)
 {//値をクリア
 }
 
@@ -92,6 +97,9 @@ HRESULT CPlayer::Init(void)
 	//位置の設定
 	m_pos = D3DXVECTOR3(0.0f, 0.0, 0.0f);
 
+	//前回の位置
+	m_posOld = D3DXVECTOR3(0.0f, 0.0, 0.0f);
+
 	//向きの設定
 	m_rot = D3DXVECTOR3(0.0f, D3DX_PI * -0.5f, 0.0f);
 
@@ -100,6 +108,12 @@ HRESULT CPlayer::Init(void)
 
 	//目的の向き
 	m_RotDest = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	//幅
+	m_fWidth = PLAYER_WIDTH;
+
+	//高さ
+	m_fHeight = PLAYER_HEIGHT;
 
 	//ジャンプしてるかどうか
 	//m_bJump = false;
@@ -159,6 +173,9 @@ void CPlayer::Update(void)
 
 	//向き取得
 	D3DXVECTOR3 rot = GetRot();
+
+	//前回の位置
+	m_posOld = m_pos;
 
 	//プレイヤー移動
 	Move(PLAYER_SPEED);
@@ -281,14 +298,14 @@ void CPlayer::Move(float fSpeed)
 		m_bMove = true;
 	}
 
-	if ((pInputKeyboard->GetTrigger(DIK_SPACE) == true || pInputPad->GetTrigger(CInputPad::BUTTON_A, 0) == true) && m_bJump == false)
-	{//SPACEが押下された時
-		//状態をtrueにする
-		m_bJump = true;
+	//if ((pInputKeyboard->GetTrigger(DIK_SPACE) == true || pInputPad->GetTrigger(CInputPad::BUTTON_A, 0) == true) && m_bJump == false)
+	//{//SPACEが押下された時
+	//	//状態をtrueにする
+	//	m_bJump = true;
 
-		//ジャンプの値
-		m_move.y = PLAYER_JUMP;
-	}
+	//	//ジャンプの値
+	//	m_move.y = PLAYER_JUMP;
+	//}
 
 	//重力処理
 	//m_move.y -= PLAYER_GRAVITY;

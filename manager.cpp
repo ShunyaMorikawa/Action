@@ -112,6 +112,9 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	//ÉÇÅ[Éhê›íË
 	SetMode(CScene::MODE_TITLE);
 
+#ifdef _DEBUG
+	SetMode(CScene::MODE_GAME);
+#endif
 	//ê¨å˜Çï‘Ç∑
 	return S_OK;
 }

@@ -94,7 +94,7 @@ void CCamera::Update(void)
 	//Move();
 
 	//‹“_‚ÌˆÚ“®
-	CameraMoveV();
+	//CameraMoveV();
 
 	//ƒJƒƒ‰‚Ì’Ç]
 	following();

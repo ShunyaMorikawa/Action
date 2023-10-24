@@ -6,6 +6,7 @@
 //========================================
 #include "gameobject.h"
 #include "renderer.h"
+#include "manager.h"
 
 //========================================
 //コンストラクタ
@@ -29,11 +30,16 @@ CGameObject::~CGameObject()
 //========================================
 HRESULT CGameObject::Init(void)
 {
+	for (int nCnt = 0; nCnt < GAME_OBJ; nCnt++)
+	{
+		m_ppModel[nCnt] = nullptr;
+	}
+
 	//オブジェクト生成
 	m_ppModel[0] = CModel::Create("data\\MODEL\\object\\woodbox.x");
 
 	//パーツの位置(全パーツ分)
-	m_ppModel[0]->SetPosition(D3DXVECTOR3(0.0f, 12.5f, 0.0f));
+	m_ppModel[0]->SetPosition(D3DXVECTOR3(50.0f, 0.0f, 0.0f));
 
 	//ファイル読み込み
 	//LoadObj("data\\FILE\\object.txt");
@@ -64,7 +70,11 @@ void CGameObject::Update()
 void CGameObject::Draw()
 {
 	//描画
-	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
+	//CObject::Draw();
+
+
+	//計算用マトリックス
+	D3DXMATRIX mtxRot, mtxTrans;
 
 	//CRenderer型のポインタ
 	CRenderer *pRenderer = CManager::GetRenderer();
@@ -88,6 +98,8 @@ void CGameObject::Draw()
 
 	//ワールドマトリックスの設定
 	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
+
+	m_ppModel[0]->Draw();
 }
 
 //========================================
@@ -261,6 +273,74 @@ void CGameObject::LoadObj(char * pFilePath)
 
 	//ファイルを閉じる
 	fclose(pFile);
+}
+
+//========================================
+//3Dオブジェクトの当たり判定
+//========================================
+bool CGameObject::Collision(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld, D3DXVECTOR3 *pMove, float fWidth, float fHeight)
+{
+	bool bLand = false;		//着地したかどうか
+	D3DXVECTOR3 VtxMax = m_pObjX->GetVtxMax();	//最大値
+	D3DXVECTOR3 VtxMin = m_pObjX->GetVtxMin();	//最小値
+
+	if (pPos->y - OBJ_WIDHT <= m_pos.y + VtxMax.y
+		&& pPos->y + OBJ_WIDHT >= m_pos.y + VtxMin.y)
+	{
+		//ブロックの左からめり込んだ時
+		if (pPosOld->x + OBJ_WIDHT <= m_pos.x + VtxMin.x	//前回の位置がブロックより左
+			&& pPos->x + OBJ_WIDHT >= m_pos.x + VtxMin.x)	//今回の位置がブロックより右
+		{
+			//ブロックの横
+			pPos->x = m_pos.x + VtxMin.x - OBJ_WIDHT;
+			//移動量を0にする
+			pMove->x = 0.0f;
+		}
+
+		//ブロックの右からめり込んだ時
+		else if (pPosOld->x - OBJ_WIDHT >= m_pos.x + VtxMax.x 	//前回の位置がブロックより左
+			&& pPos->x - OBJ_WIDHT <= m_pos.x + VtxMax.x)		//今回の位置がブロックより右
+		{
+			//ブロックの横
+			pPos->x = m_pos.x + VtxMax.x + OBJ_WIDHT;
+			//移動量を0にする
+			pMove->x = 0.0f;
+		}
+	}
+
+	//ブロックの幅
+	if (pPos->x - OBJ_WIDHT <= m_pos.x + VtxMax.x
+		&& pPos->x + OBJ_WIDHT >= m_pos.x + VtxMin.x)
+	{
+
+		//ブロックの上からめり込んだ時
+		if (pPosOld->y + OBJ_WIDHT <= m_pos.y + VtxMin.y	//前回の位置がブロックより左
+			&& pPos->y + OBJ_WIDHT >= m_pos.y + VtxMin.y)	//今回の位置がブロックより右
+		{
+			//ブロックの横
+			pPos->y = m_pos.y + VtxMin.y - OBJ_WIDHT;
+
+			//着地した
+			bLand = true;
+
+			//移動量を0にする
+			pMove->y = 0.0f;
+		}
+
+		//ブロックの下からめり込んだ時
+		else if (pPosOld->y - OBJ_WIDHT >= m_pos.y + VtxMax.y 	//前回の位置がブロックより左
+			&& pPos->y - OBJ_WIDHT <= m_pos.y + VtxMax.y)//今回の位置がブロックより右
+		{
+			//ブロックの横
+			pPos->y = m_pos.y + VtxMax.y + OBJ_WIDHT;
+
+			//移動量を0にする
+			pMove->y = 0.0f;
+		}
+	}
+
+	//bLandを返す
+	return bLand;
 }
 
 //========================================

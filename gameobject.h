@@ -15,6 +15,7 @@
 //マクロ定義
 //========================================
 #define GAME_OBJ	(2)		//ゲーム内オブジェクトの最大数
+#define OBJ_WIDHT	(25.0f)		//オブジェクトの幅
 
 //========================================
 //ゲーム内オブジェクトクラス
@@ -39,6 +40,8 @@ public:
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }		//位置取得
 
 	void LoadObj(char *pFilePath);
+
+	bool Collision(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld, D3DXVECTOR3 *pMove, float fWidth, float fHeight);
 
 	CModel **GetModel(void) { return &m_ppModel[0]; }	//モデル取得
 
