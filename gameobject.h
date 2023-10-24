@@ -9,7 +9,6 @@
 #include "main.h"
 #include "objectX.h"
 #include "model.h"
-#include "player.h"
 
 //========================================
 //マクロ定義
@@ -49,9 +48,8 @@ private:
 	//メンバ変数
 	CModel *m_ppModel[GAME_OBJ];	//モデルへのポインタ
 	CObjectX *m_pObjX;		//オブジェクトXのポインタ
-	CPlayer *m_pPlayer;		//プレイヤーのポインタ
 
-	D3DXMATRIX m_mtxWorld;			//ワールドマトリックス
+	D3DXMATRIX m_mtxWorld;	//ワールドマトリックス
 
 	D3DXVECTOR3 m_pos;
 	D3DXVECTOR3 m_rot;		//向き

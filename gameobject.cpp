@@ -69,10 +69,6 @@ void CGameObject::Update()
 //========================================
 void CGameObject::Draw()
 {
-	//描画
-	//CObject::Draw();
-
-
 	//計算用マトリックス
 	D3DXMATRIX mtxRot, mtxTrans;
 
@@ -99,6 +95,10 @@ void CGameObject::Draw()
 	//ワールドマトリックスの設定
 	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
 
+	//描画
+	//CObject::Draw();
+
+	//描画
 	m_ppModel[0]->Draw();
 }
 
@@ -312,7 +312,6 @@ bool CGameObject::Collision(D3DXVECTOR3 *pPos, D3DXVECTOR3 *pPosOld, D3DXVECTOR3
 	if (pPos->x - OBJ_WIDHT <= m_pos.x + VtxMax.x
 		&& pPos->x + OBJ_WIDHT >= m_pos.x + VtxMin.x)
 	{
-
 		//ブロックの上からめり込んだ時
 		if (pPosOld->y + OBJ_WIDHT <= m_pos.y + VtxMin.y	//前回の位置がブロックより左
 			&& pPos->y + OBJ_WIDHT >= m_pos.y + VtxMin.y)	//今回の位置がブロックより右

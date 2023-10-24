@@ -106,6 +106,12 @@ HRESULT CPlayer::Init(void)
 	//モーションのポインタ
 	m_pMotion = nullptr;
 
+	//モデルのポインタ
+	memset(&m_apModel[0], NULL, sizeof(m_apModel));
+
+	//ゲームオブジェクトのポインタ
+	m_pGameObj = nullptr;
+
 	//目的の向き
 	m_RotDest = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
@@ -180,13 +186,13 @@ void CPlayer::Update(void)
 	//プレイヤー移動
 	Move(PLAYER_SPEED);
 
-	//位置更新
-	//SetPosition(D3DXVECTOR3(pos.x += m_move.x, pos.y += m_move.y, 0.0f));
-
 	if (m_pMotion != nullptr)
 	{//モーション更新
 		m_pMotion->Update();
 	}
+
+	//当たり判定
+	//m_pGameObj->Collision(&m_pos, &m_posOld, &m_move, m_fWidth, m_fHeight);
 
 	//ポインタ
 	CDebugProc *pDebugProc = CManager::GetInstance()->GetDebugProc();
