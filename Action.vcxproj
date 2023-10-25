@@ -160,11 +160,11 @@
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="gameobject.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
+    <ClInclude Include="mapobject.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="motion.h" />
     <ClInclude Include="number.h" />
@@ -189,11 +189,11 @@
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
+    <ClCompile Include="mapobject.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="motion.cpp" />
     <ClCompile Include="number.cpp" />

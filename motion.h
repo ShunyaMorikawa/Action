@@ -63,7 +63,7 @@ public:
 
 	CModel **GetModel(void) { return &m_ppModel[0]; }
 
-	void Load(char *pPath);
+	HRESULT Load(char *pPath);
 
 private:
 	//ƒƒ“ƒo•Ï”

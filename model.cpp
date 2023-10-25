@@ -41,7 +41,7 @@ CModel *CModel::Create(const char *pFilename)
 
 	if (pModel == nullptr)
 	{
-		//プレイヤー生成
+		//モデル生成
 		pModel = new CModel;
 
 		//初期化

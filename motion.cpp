@@ -243,7 +243,7 @@ void CMotion::SetModel(CModel *ppModel, int nNumModel)
 //========================================
 //読み込み
 //========================================
-void CMotion::Load(char *pPath)
+HRESULT CMotion::Load(char *pPath)
 {
 	//変数宣言
 	char garbage[640];		//ゴミ格納用
@@ -271,6 +271,11 @@ void CMotion::Load(char *pPath)
 
 	//ファイルを開く
 	pFile = fopen(pPath, "r");
+
+	if (pFile == NULL)
+	{
+		return E_FAIL;
+	}
 
 	while (1)
 	{//END_SCRIPTが来るまで繰り返す
@@ -543,4 +548,6 @@ void CMotion::Load(char *pPath)
 	}
 	//ファイルを閉じる
 	fclose(pFile);
+
+	return S_OK;
 }

@@ -24,9 +24,6 @@
     <ClInclude Include="game.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="gameobject.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="input.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
     <ClInclude Include="number.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="mapobject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -161,9 +161,6 @@
     <ClCompile Include="polygon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="gameobject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="bg.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -177,6 +174,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="number.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="mapobject.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

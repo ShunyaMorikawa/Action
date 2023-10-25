@@ -16,7 +16,7 @@
 #include "model.h"
 #include "game.h"
 #include "effect.h"
-#include "gameobject.h"
+#include "mapobject.h"
 
 //========================================
 //É}ÉNÉçíËã`

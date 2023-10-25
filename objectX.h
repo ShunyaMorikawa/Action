@@ -36,7 +36,6 @@ public:
 	void SetVertex(void);
 	void SetSize(float fWidht, float fHeight);
 	void SetPosition(D3DXVECTOR3 pos);
-	void Load(void);
 	D3DXVECTOR3 GetPosition(void) { return m_pos; }		//位置取得
 	D3DXVECTOR3 GetVtxMin(void) { return m_vtxMin; }	//モデルの最小値取得
 	D3DXVECTOR3 GetVtxMax(void) { return m_vtxMax; }	//モデルの最大値取得

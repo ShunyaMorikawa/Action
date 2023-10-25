@@ -14,7 +14,7 @@
 #include "light.h"
 #include "player.h"
 #include "polygon.h"
-#include "gameobject.h"
+#include "mapobject.h"
 #include "bg.h"
 #include "time.h"
 
@@ -33,7 +33,7 @@ CGame *CGame::m_pGame = nullptr;			//ゲームのポインタ
 CLight *CGame::m_pLight = nullptr;			//ライトのポインタ
 CPlayer *CGame::m_pPlayer = nullptr;		//プレイヤーのポインタ
 CPolygon *CGame::m_pPolygon = nullptr;		//ポリゴンのポインタ
-CGameObject *CGame::m_pGameObject = nullptr;	//ゲーム内オブジェクト
+CMap *CGame::m_pMapObject = nullptr;	//ゲーム内オブジェクト
 CBg *CGame::m_pBg = nullptr;					//背景のポインタ
 CTime *CGame::m_pTime = nullptr;				//タイムのポインタ
 
@@ -101,13 +101,13 @@ HRESULT CGame::Init(void)
 		return -1;
 	}
 	
-	if (m_pGameObject == nullptr)
+	if (m_pMapObject == nullptr)
 	{//ゲーム内オブジェクトの生成
-		m_pGameObject = CGameObject::Create();
+		m_pMapObject = CMap::Create();
 	}
 
 	//ゲーム内オブジェクトの初期化処理
-	if (FAILED(m_pGameObject->Init()))
+	if (FAILED(m_pMapObject->Init()))
 	{//初期化処理が失敗した場合
 		return -1;
 	}
@@ -134,10 +134,10 @@ void CGame::Uninit(void)
 		m_pPlayer = nullptr;
 	}
 	
-	if (m_pGameObject != nullptr)
+	if (m_pMapObject != nullptr)
 	{//ゲーム内オブジェクト破棄
-		m_pGameObject->Uninit();
-		m_pGameObject = nullptr;
+		m_pMapObject->Uninit();
+		m_pMapObject = nullptr;
 	}
 
 	if (m_pTime != nullptr)

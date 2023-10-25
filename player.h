@@ -10,7 +10,7 @@
 #include "main.h"
 #include "model.h"
 #include "motion.h"
-#include "gameobject.h"
+#include "mapobject.h"
 
 //========================================
 //プレイヤークラス
@@ -74,7 +74,7 @@ private:
 
 	CModel *m_apModel[MAX_PARTS];	//モデルへのポインタ
 	CMotion *m_pMotion;		//モーションのポインタ
-	CGameObject *m_pGameObj;	//ゲーム内オブジェクトのポインタ
+	CMap *m_pGameObj;	//ゲーム内オブジェクトのポインタ
 	int m_apNumModel;		//モデル(パーツ)の総数
 	D3DXVECTOR3 m_RotDest;	//目的の向き
 	float m_fHeight;		//高さ
