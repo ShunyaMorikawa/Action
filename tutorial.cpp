@@ -37,7 +37,7 @@ CTutorial::~CTutorial()
 //=======================================
 CTutorial *CTutorial::Create(void)
 {
-	//タイトルのポインタ
+	//チュートリアルのポインタ
 	CTutorial *pTitle = nullptr;
 
 	if (pTitle == nullptr)
@@ -46,7 +46,7 @@ CTutorial *CTutorial::Create(void)
 		pTitle = new CTutorial;
 
 		//初期化
-		pTitle->Init();
+		pTitle->Init(MODE::MODE_TUTORIAL);
 	}
 
 	//ポインタを返す
@@ -56,7 +56,7 @@ CTutorial *CTutorial::Create(void)
 //=======================================
 //初期化
 //=======================================
-HRESULT CTutorial::Init(void)
+HRESULT CTutorial::Init(MODE)
 {
 	//テクスチャのポインタ
 	CTexture *pTexture = CManager::GetInstance()->GetTexture();

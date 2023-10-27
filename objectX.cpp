@@ -34,7 +34,7 @@ CObjectX::~CObjectX()
 //========================================
 //初期化
 //========================================
-HRESULT CObjectX::Init(void)
+HRESULT CObjectX::Init()
 {
 	//ローカル変数宣言
 	D3DXMATERIAL *pMat;
@@ -115,6 +115,43 @@ HRESULT CObjectX::Init(void)
 
 	//成功を返す
 	return S_OK;
+}
+
+//========================================
+//ファイル読み込み
+//========================================
+void CObjectX::InitFile(char *pFilename)
+{
+	//ローカル変数宣言
+	D3DXMATERIAL *pMat;
+
+	//CRenderer型のポインタ
+	CRenderer *pRenderer = CManager::GetInstance()->GetRenderer();
+
+	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
+
+	//Xファイルの読み込み
+	D3DXLoadMeshFromX(pFilename,
+		D3DXMESH_SYSTEMMEM,
+		pDevice,
+		nullptr,
+		&m_pBuffMat,
+		nullptr,
+		&m_dwNumMat,
+		&m_pMesh);
+
+	//マテリアル情報に対するポインタを取得
+	pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
+
+	for (int nCntTex = 0; nCntTex < (int)m_dwNumMat; nCntTex++)
+	{
+		if (pMat[nCntTex].pTextureFilename != nullptr)
+		{//テクスチャファイル名が存在する
+		 //テクスチャの読み込み
+			D3DXCreateTextureFromFile(pDevice, pMat[nCntTex].pTextureFilename, &m_pTexture);
+		}
+	}
 }
 
 //========================================
@@ -202,15 +239,28 @@ void CObjectX::Draw(void)
 		//モデル(パーツ)の描画
 		m_pMesh->DrawSubset(nCntMat);
 	}
+
 	//保存していたマテリアルを戻す
 	pDevice->SetMaterial(&matDef);
 }
 
-//===========================================
-//オブジェクトの外部ファイル
-//===========================================
-void Load(void)
+//========================================
+//オブジェクトXの生成
+//========================================
+CObjectX *CObjectX::Create(char * pFilename)
 {
+	CObjectX *pObj = nullptr;
+
+	if (pObj == nullptr)
+	{
+		//インスタンス生成
+		pObj = new CObjectX;
+
+		//初期化
+		pObj->Init();
+	}
+
+	return pObj;
 }
 
 //========================================

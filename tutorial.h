@@ -22,7 +22,7 @@ public:
 	//ƒƒ“ƒoŠÖ”
 	static CTutorial *Create(void);
 
-	HRESULT Init(void);
+	HRESULT Init(MODE);
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);

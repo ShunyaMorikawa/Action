@@ -39,7 +39,7 @@ public:
 	//メンバ関数
 	static CGame *Create(void);
 
-	HRESULT Init(void);
+	HRESULT Init(MODE);
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
@@ -56,7 +56,7 @@ private:
 	static CLight *m_pLight;			//ライトのポインタ
 	static CPlayer *m_pPlayer;			//プレイヤーのポインタ
 	static CPolygon *m_pPolygon;		//ポリゴンのポインタ
-	static CMap *m_pMapObject;	//ゲーム内オブジェクト
+	static CMap *m_pMapObject;			//ゲーム内オブジェクト
 	static CBg *m_pBg;					//背景のポインタ
 	static CTime *m_pTime;				//タイムのポインタ
 	bool m_bPause;						//ポーズ状態のON/OFF

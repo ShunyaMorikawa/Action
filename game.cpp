@@ -66,7 +66,7 @@ CGame *CGame::Create(void)
 		pGame = new CGame;
 
 		//初期化
-		pGame->Init();
+		pGame->Init(MODE::MODE_GAME);
 	}
 
 	//ポインタを返す
@@ -76,7 +76,7 @@ CGame *CGame::Create(void)
 //========================================
 //初期化
 //========================================
-HRESULT CGame::Init(void)
+HRESULT CGame::Init(MODE)
 {
 	//ライト生成
 	if (m_pLight == nullptr)
@@ -113,7 +113,7 @@ HRESULT CGame::Init(void)
 	}
 
 	if (m_pTime == nullptr)
-	{//ゲーム内オブジェクトの生成
+	{//タイムの生成
 		m_pTime = CTime::Create();
 	}
 	
@@ -155,6 +155,11 @@ void CGame::Update(void)
 	//CInputKeyboard型のポインタ
 	CInputKeyboard *pInputKeyboard = nullptr;
 	pInputKeyboard = CManager::GetInstance()->GetInputKeyboard();	//キーボードの情報取得
+
+	if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
+	{
+		CManager::SetMode(CScene::MODE_RESULT);
+	}
 
 #ifdef _DEBUG
 	if (pInputKeyboard->GetTrigger(DIK_F3) == true)

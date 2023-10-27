@@ -25,13 +25,14 @@ public:
 	//ÉÅÉìÉoä÷êî
 	static CTitle *Create(void);
 
-	HRESULT Init(void);
+	HRESULT Init(MODE Now);
 	void Uninit(void);
 	void Update(void);
 	void Draw(void);
 
 private:
 	CObject2D *m_pObj2D;
+	CScene *m_pScene;
 };
 
 #endif

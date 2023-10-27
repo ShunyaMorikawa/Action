@@ -47,7 +47,7 @@ CResult *CResult::Create(void)
 		pTitle = new CResult;
 
 		//初期化
-		pTitle->Init();
+		pTitle->Init(MODE::MODE_RESULT);
 	}
 
 	//ポインタを返す
@@ -57,7 +57,7 @@ CResult *CResult::Create(void)
 //=======================================
 //初期化
 //=======================================
-HRESULT CResult::Init(void)
+HRESULT CResult::Init(MODE)
 {
 	//テクスチャのポインタ
 	CTexture *pTexture = CManager::GetInstance()->GetTexture();

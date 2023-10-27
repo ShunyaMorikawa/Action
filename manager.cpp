@@ -244,6 +244,19 @@ void CManager::SetMode(CScene::MODE mode)
 
 	//モード生成
 	m_pScene = CScene::Create(mode);
+
+	GetMode(mode);
+}
+
+//========================================
+//現在のモード取得
+//========================================
+CScene::MODE CManager::GetMode(CScene::MODE nowMode)
+{
+	//モード取得
+	nowMode = m_pScene->GetMode();
+
+	return nowMode;
 }
 
 //========================================
@@ -296,12 +309,12 @@ CScene *CScene::Create(int nMode)
 			break;
 
 		case MODE_TUTORIAL:
-			//タイトルシーン生成
+			//チュートリアルシーン生成
 			pScene = CTutorial::Create();
 			break;
 
 		case MODE_GAME:
-			//タイトルシーン生成
+			//ゲームシーン生成
 			pScene = CGame::Create();
 			break;
 
@@ -309,13 +322,15 @@ CScene *CScene::Create(int nMode)
 			//リザルトシーン
 			pScene = CResult::Create();
 			break;
+
+		default:
+			break;
 		}
 
 		//初期化
-		pScene->Init();
+		pScene->Init(MODE_NONE);
 	}
 
 	//ポインタを返す
 	return pScene;
 }
- 

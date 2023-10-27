@@ -15,7 +15,8 @@
 //コンストラクタ
 //=======================================
 CTitle::CTitle() :
-	m_pObj2D(nullptr)
+	m_pObj2D(nullptr),
+	m_pScene(nullptr)
 {
 }
 
@@ -40,7 +41,7 @@ CTitle *CTitle::Create(void)
 		pTitle = new CTitle;
 
 		//初期化
-		pTitle->Init();
+		pTitle->Init(MODE::MODE_TITLE);
 	}
 
 	//ポインタを返す
@@ -50,7 +51,7 @@ CTitle *CTitle::Create(void)
 //=======================================
 //初期化
 //=======================================
-HRESULT CTitle::Init(void)
+HRESULT CTitle::Init(MODE)
 {
 	//テクスチャのポインタ
 	CTexture *pTexture = CManager::GetInstance()->GetTexture();

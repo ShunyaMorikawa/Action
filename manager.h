@@ -46,12 +46,11 @@ public:
 	//メンバ関数
 	static CScene *Create(int nMode);
 
-	virtual HRESULT Init(void) = 0;
+	virtual HRESULT Init(MODE) = 0;
 	virtual void Uninit(void) = 0;
 	virtual void Update(void) = 0;
 	virtual void Draw(void) = 0;
 	MODE GetMode(void) { return m_mode; }	//モード取得
-
 
 private:
 	//メンバ変数
@@ -81,7 +80,7 @@ public:
 	static CTexture *GetTexture(void) { return m_pTexture; }
 	static CDebugProc *GetDebugProc(void) { return m_pDebugProc; }
 	static void SetMode(CScene::MODE mode);
-	static CScene::MODE GetMode(void) { return m_pScene->GetMode(); }	//モード取得
+	static CScene::MODE GetMode(CScene::MODE nowMode);	//モード取得
 	static CCamera *GetCamera(void) { return m_pCamera; }
 	static CManager *GetInstance();
 

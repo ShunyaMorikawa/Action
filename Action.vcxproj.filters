@@ -94,7 +94,7 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="mapobject.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

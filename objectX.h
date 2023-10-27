@@ -29,10 +29,12 @@ public:
 	~CObjectX();	//デストラクタ
 
 	//メンバ関数
-	HRESULT Init(void);		//初期化
+	HRESULT Init();		//初期化
+	void InitFile(char *pFilename);	//ファイル読み込みの初期化
 	void Uninit(void);		//終了
 	void Update(void);		//更新
 	void Draw(void);		//描画
+	static CObjectX *Create(char *pFilename);
 	void SetVertex(void);
 	void SetSize(float fWidht, float fHeight);
 	void SetPosition(D3DXVECTOR3 pos);

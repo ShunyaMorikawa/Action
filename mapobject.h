@@ -1,11 +1,11 @@
 //========================================
 //
-//ゲーム内オブジェクト[gameobject.h]
+//マップオブジェクト[mapobject.h]
 //Author：森川駿弥
 //
 //========================================
-#ifndef _GAMEOBJECT_H_
-#define _GAMEOBJECT_H_
+#ifndef _MAPOBJECT_H_
+#define _MAPOBJECT_H_
 #include "main.h"
 #include "objectX.h"
 #include "model.h"
@@ -13,16 +13,17 @@
 //========================================
 //マクロ定義
 //========================================
-#define GAME_OBJ	(2)		//ゲーム内オブジェクトの最大数
+#define GAME_OBJ	(2)			//ゲーム内オブジェクトの最大数
 #define OBJ_WIDHT	(25.0f)		//オブジェクトの幅
+#define OBJ_HEIGHT	(25.0f)		//オブジェクトの高さ
 
 //========================================
-//ゲーム内オブジェクトクラス
+//マップオブジェクトクラス
 //========================================
-class CMap : public CObject
+class CMap
 {
 public:
-	CMap();		//コンストラクタ
+	CMap();			//コンストラクタ
 	~CMap();		//デストラクタ
 
 	//メンバ関数
@@ -48,7 +49,7 @@ private:
 
 	//メンバ変数
 	CModel *m_ppModel[GAME_OBJ];	//モデルへのポインタ
-	CObjectX *m_pObjX;		//オブジェクトXのポインタ
+	CObjectX *m_pObjX[GAME_OBJ];	//オブジェクトXのポインタ
 
 	D3DXMATRIX m_mtxWorld;	//ワールドマトリックス
 

@@ -352,7 +352,9 @@ float CCamera::RotNor(float RotN)
 void CCamera::following(void)
 {
 	//ƒ‚[ƒhŽæ“¾
-	if (CManager::GetInstance()->GetMode() != CScene::MODE_GAME)
+	CScene::MODE scene = CManager::GetInstance()->GetMode(CScene::MODE_GAME);
+
+	if (scene != CScene::MODE_GAME)
 	{
 		return;
 	}
