@@ -14,6 +14,7 @@
 #include "tutorial.h"
 #include "result.h"
 #include "game.h"
+#include "sound.h"
 
 //========================================
 //静的メンバ変数
@@ -26,6 +27,7 @@ CTexture *CManager::m_pTexture = nullptr;
 CDebugProc *CManager::m_pDebugProc = nullptr;
 CCamera *CManager::m_pCamera = nullptr;
 CManager *CManager::m_pManager = nullptr;
+CSound *CManager::m_pSound = nullptr;
 
 //========================================
 //コンストラクタ
@@ -254,7 +256,7 @@ void CManager::SetMode(CScene::MODE mode)
 CScene::MODE CManager::GetMode(CScene::MODE nowMode)
 {
 	//モード取得
-	nowMode = m_pScene->GetMode();
+	nowMode = m_pScene->GetScene();
 
 	return nowMode;
 }

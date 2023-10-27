@@ -17,6 +17,7 @@
 #include "game.h"
 #include "effect.h"
 #include "mapobject.h"
+#include "sound.h"
 
 //========================================
 //マクロ定義
@@ -94,6 +95,9 @@ CPlayer *CPlayer::Create(void)
 //========================================
 HRESULT CPlayer::Init(void)
 {
+	//CSound型のポインタ
+	CSound *pSound = CManager::GetSound();
+
 	//位置の設定
 	m_pos = D3DXVECTOR3(0.0f, 0.0, 0.0f);
 
@@ -148,6 +152,9 @@ HRESULT CPlayer::Init(void)
 //========================================
 void CPlayer::Uninit(void)
 {
+	//CSound型のポインタ
+	CSound *pSound = CManager::GetSound();
+
 	if (m_pTexture != nullptr)
 	{//テクスチャの破棄
 		m_pTexture->Release();
@@ -160,6 +167,8 @@ void CPlayer::Uninit(void)
 		delete m_pMotion;
 		m_pMotion = NULL;
 	}
+
+	pSound->Stop();
 
 	//オブジェクト(自分自身)の破棄
 	Release();
@@ -254,6 +263,9 @@ void CPlayer::Move(float fSpeed)
 	CCamera *pCamera = nullptr;
 	pCamera = CManager::GetInstance()->GetCamera();
 
+	//CSound型のポインタ
+	CSound *pSound = CManager::GetSound();
+
 	//rotの取得
 	D3DXVECTOR3 rot = pCamera->GetRot();
 
@@ -283,6 +295,8 @@ void CPlayer::Move(float fSpeed)
 
 		//移動状態にする
 		m_bMove = true;
+
+		pSound->PlaySound(CSound::SOUND_LABEL_SE_WALK);
 	}
 	
 	else if (pInputKeyboard->GetPress(DIK_D) == true || pInputPad->GetLStickXPress(CInputPad::BUTTON_XSTICK, 0) > 0)
@@ -302,6 +316,8 @@ void CPlayer::Move(float fSpeed)
 
 		//移動状態にする
 		m_bMove = true;
+
+		pSound->PlaySound(CSound::SOUND_LABEL_SE_WALK);
 	}
 
 	//if ((pInputKeyboard->GetTrigger(DIK_SPACE) == true || pInputPad->GetTrigger(CInputPad::BUTTON_A, 0) == true) && m_bJump == false)

@@ -23,6 +23,7 @@ class CGame;
 class CFade;
 class CInputPad;
 class CCamera;
+class CSound;
 
 //========================================
 //シーンクラス
@@ -50,7 +51,7 @@ public:
 	virtual void Uninit(void) = 0;
 	virtual void Update(void) = 0;
 	virtual void Draw(void) = 0;
-	MODE GetMode(void) { return m_mode; }	//モード取得
+	MODE GetScene(void) { return m_mode; }	//モード取得
 
 private:
 	//メンバ変数
@@ -83,6 +84,7 @@ public:
 	static CScene::MODE GetMode(CScene::MODE nowMode);	//モード取得
 	static CCamera *GetCamera(void) { return m_pCamera; }
 	static CManager *GetInstance();
+	static CSound *GetSound(void) { return m_pSound; }
 
 private:
 	//メンバ変数
@@ -98,7 +100,7 @@ private:
 	static CGame *m_pGame;				//ゲームマネージャーのポインタ
 	static CCamera *m_pCamera;			//カメラのポインタ
 	static CManager *m_pManager;
-
+	static CSound *m_pSound;			//サウンドのポインタ
 };
 
 #endif

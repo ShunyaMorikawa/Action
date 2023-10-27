@@ -96,6 +96,9 @@
     <ClInclude Include="mapobject.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,6 +180,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="mapobject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

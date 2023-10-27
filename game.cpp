@@ -17,6 +17,7 @@
 #include "mapobject.h"
 #include "bg.h"
 #include "time.h"
+#include "sound.h"
 
 //========================================
 //マクロ定義
@@ -78,6 +79,9 @@ CGame *CGame::Create(void)
 //========================================
 HRESULT CGame::Init(MODE)
 {
+	//CSound型のポインタ
+	CSound *pSound = CManager::GetSound();
+
 	//ライト生成
 	if (m_pLight == nullptr)
 	{//m_pLightがnullptrの時
@@ -120,6 +124,8 @@ HRESULT CGame::Init(MODE)
 	//ポーズの状態
 	m_bPause = false;
 
+	pSound->PlaySound(CSound::SOUND_LABEL_BGM_GAME);
+
 	return S_OK;
 }
 
@@ -128,6 +134,9 @@ HRESULT CGame::Init(MODE)
 //========================================
 void CGame::Uninit(void)
 {
+	//CSound型のポインタ
+	CSound *pSound = CManager::GetSound();
+
 	if (m_pPlayer != nullptr)
 	{//プレイヤー破棄
 		m_pPlayer->Uninit();
@@ -145,6 +154,8 @@ void CGame::Uninit(void)
 		m_pTime->Uninit();
 		m_pTime = nullptr;
 	}
+
+	pSound->Stop();
 }
 
 //========================================
