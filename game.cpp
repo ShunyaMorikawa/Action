@@ -34,9 +34,9 @@ CGame *CGame::m_pGame = nullptr;			//ゲームのポインタ
 CLight *CGame::m_pLight = nullptr;			//ライトのポインタ
 CPlayer *CGame::m_pPlayer = nullptr;		//プレイヤーのポインタ
 CPolygon *CGame::m_pPolygon = nullptr;		//ポリゴンのポインタ
-CMap *CGame::m_pMapObject = nullptr;	//ゲーム内オブジェクト
-CBg *CGame::m_pBg = nullptr;					//背景のポインタ
-CTime *CGame::m_pTime = nullptr;				//タイムのポインタ
+CMap *CGame::m_pMapObject = nullptr;		//ゲーム内オブジェクト
+CBg *CGame::m_pBg = nullptr;				//背景のポインタ
+CTime *CGame::m_pTime = nullptr;			//タイムのポインタ
 
 //========================================
 //コンストラクタ
@@ -106,11 +106,11 @@ HRESULT CGame::Init(MODE)
 	}
 	
 	if (m_pMapObject == nullptr)
-	{//ゲーム内オブジェクトの生成
+	{//マップオブジェクトの生成
 		m_pMapObject = CMap::Create();
 	}
 
-	//ゲーム内オブジェクトの初期化処理
+	//マップオブジェクトの初期化処理
 	if (FAILED(m_pMapObject->Init()))
 	{//初期化処理が失敗した場合
 		return -1;
@@ -124,7 +124,7 @@ HRESULT CGame::Init(MODE)
 	//ポーズの状態
 	m_bPause = false;
 
-	pSound->PlaySound(CSound::SOUND_LABEL_BGM_GAME);
+	//pSound->PlaySound(CSound::SOUND_LABEL_BGM_GAME);
 
 	return S_OK;
 }
@@ -155,7 +155,7 @@ void CGame::Uninit(void)
 		m_pTime = nullptr;
 	}
 
-	pSound->Stop();
+	//pSound->Stop();
 }
 
 //========================================

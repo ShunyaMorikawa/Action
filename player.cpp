@@ -168,7 +168,7 @@ void CPlayer::Uninit(void)
 		m_pMotion = NULL;
 	}
 
-	pSound->Stop();
+	//pSound->Stop();
 
 	//オブジェクト(自分自身)の破棄
 	Release();
@@ -296,7 +296,7 @@ void CPlayer::Move(float fSpeed)
 		//移動状態にする
 		m_bMove = true;
 
-		pSound->PlaySound(CSound::SOUND_LABEL_SE_WALK);
+		//pSound->PlaySound(CSound::SOUND_LABEL_SE_WALK);
 	}
 	
 	else if (pInputKeyboard->GetPress(DIK_D) == true || pInputPad->GetLStickXPress(CInputPad::BUTTON_XSTICK, 0) > 0)
@@ -317,7 +317,7 @@ void CPlayer::Move(float fSpeed)
 		//移動状態にする
 		m_bMove = true;
 
-		pSound->PlaySound(CSound::SOUND_LABEL_SE_WALK);
+		//pSound->PlaySound(CSound::SOUND_LABEL_SE_WALK);
 	}
 
 	//if ((pInputKeyboard->GetTrigger(DIK_SPACE) == true || pInputPad->GetTrigger(CInputPad::BUTTON_A, 0) == true) && m_bJump == false)

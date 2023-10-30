@@ -40,6 +40,8 @@ HRESULT CMap::Init(void)
 //========================================
 void CMap::Uninit()
 {
+	//終了
+	CModel::Uninit();
 }
 
 //========================================
@@ -54,6 +56,34 @@ void CMap::Update()
 //========================================
 void CMap::Draw()
 {
+	//描画
+	D3DXMATRIX mtxRot, mtxTrans;	//計算用マトリックス
+
+	//CRenderer型のポインタ
+	CRenderer *pRenderer = CManager::GetInstance()->GetRenderer();
+
+	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = pRenderer->GetDevice();
+
+	//位置取得
+	D3DXVECTOR3 pos = GetPosition();
+
+	//ワールドマトリックスの初期化
+	D3DXMatrixIdentity(&m_mtxWorld);
+
+	//向きを反映
+	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+	//位置を反映
+	D3DXMatrixTranslation(&mtxTrans, pos.x, pos.y, pos.z);
+	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+	//ワールドマトリックスの設定
+	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
+
+	//描画
+	CModel::Draw();
 }
 
 //========================================
@@ -80,7 +110,7 @@ CMap *CMap::Create(void)
 //========================================
 //オブジェクト設定
 //========================================
-void CMap::SetObject(CModel * ppModel, int nNumModel)
+void CMap::SetObject(CModel *ppModel, int nNumModel)
 {
 	//ポインタ
 	m_ppModel[nNumModel] = ppModel;

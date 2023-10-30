@@ -108,6 +108,13 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 		m_pDebugProc->Init();
 	}
 
+	//サウンドの生成
+	if (m_pSound == nullptr)
+	{
+		m_pSound = new CSound;
+		m_pSound->Init(hWnd);
+	}
+
 	//テクスチャ生成
 	m_pTexture = new CTexture;
 
@@ -165,6 +172,14 @@ void CManager::Uninit(void)
 	if (m_pDebugProc != nullptr)
 	{//debugprocの破棄
 		m_pDebugProc->Uninit();
+	}
+
+	//サウンドの破棄
+	if (m_pSound != nullptr)
+	{
+		m_pSound->Uninit();
+		delete m_pSound;
+		m_pSound = nullptr;
 	}
 
 	if (m_pTexture != nullptr)
