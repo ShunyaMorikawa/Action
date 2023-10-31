@@ -18,6 +18,7 @@
 #include "bg.h"
 #include "time.h"
 #include "sound.h"
+#include "item.h"
 
 //========================================
 //マクロ定義
@@ -37,6 +38,7 @@ CPolygon *CGame::m_pPolygon = nullptr;		//ポリゴンのポインタ
 CMap *CGame::m_pMapObject = nullptr;		//ゲーム内オブジェクト
 CBg *CGame::m_pBg = nullptr;				//背景のポインタ
 CTime *CGame::m_pTime = nullptr;			//タイムのポインタ
+CItem *CGame::m_pItem = nullptr;
 
 //========================================
 //コンストラクタ
@@ -121,6 +123,11 @@ HRESULT CGame::Init(MODE)
 		m_pTime = CTime::Create();
 	}
 	
+	if (m_pItem == nullptr)
+	{
+		m_pItem = CItem::Create();
+	}
+
 	//ポーズの状態
 	m_bPause = false;
 
@@ -153,6 +160,12 @@ void CGame::Uninit(void)
 	{//タイム破棄
 		m_pTime->Uninit();
 		m_pTime = nullptr;
+	}
+
+	if (m_pItem != nullptr)
+	{//アイテム破棄
+		m_pItem->Uninit();
+		m_pItem = nullptr;
 	}
 
 	//pSound->Stop();

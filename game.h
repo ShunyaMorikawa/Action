@@ -20,6 +20,7 @@ class CPolygon;
 class CMap;
 class CBg;
 class CTime;
+class CItem;
 
 //========================================
 //マクロ
@@ -59,6 +60,7 @@ private:
 	static CMap *m_pMapObject;			//ゲーム内オブジェクト
 	static CBg *m_pBg;					//背景のポインタ
 	static CTime *m_pTime;				//タイムのポインタ
+	static CItem *m_pItem;				//アイテムのポインタ
 	bool m_bPause;						//ポーズ状態のON/OFF
 };
 
