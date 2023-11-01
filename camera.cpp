@@ -49,7 +49,7 @@ CCamera::~CCamera()
 HRESULT CCamera::Init(void)
 {
 	//éãì_
-	m_posV = D3DXVECTOR3(0.0f, 100.0f, -1000.0f);
+	m_posV = D3DXVECTOR3(0.0f, 50.0f, -1000.0f);
 
 	//íçéãì_
 	m_posR = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

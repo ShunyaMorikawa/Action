@@ -19,6 +19,7 @@
 #include "time.h"
 #include "sound.h"
 #include "item.h"
+#include "score.h"
 
 //========================================
 //マクロ定義
@@ -39,6 +40,7 @@ CMap *CGame::m_pMapObject = nullptr;		//ゲーム内オブジェクト
 CBg *CGame::m_pBg = nullptr;				//背景のポインタ
 CTime *CGame::m_pTime = nullptr;			//タイムのポインタ
 CItem *CGame::m_pItem = nullptr;
+CScore *CGame::m_pScore = nullptr;
 
 //========================================
 //コンストラクタ
@@ -125,7 +127,12 @@ HRESULT CGame::Init(MODE)
 	
 	if (m_pItem == nullptr)
 	{
-		m_pItem = CItem::Create();
+		m_pItem = CItem::Create(D3DXVECTOR3(50.0f, 0.0f , 0.0f));
+	}
+
+	if (m_pScore == nullptr)
+	{//タイムの生成
+		m_pScore = CScore::Create();
 	}
 
 	//ポーズの状態
@@ -166,6 +173,12 @@ void CGame::Uninit(void)
 	{//アイテム破棄
 		m_pItem->Uninit();
 		m_pItem = nullptr;
+	}
+
+	if (m_pScore != nullptr)
+	{//スコア破棄
+		m_pScore->Uninit();
+		m_pScore = nullptr;
 	}
 
 	//pSound->Stop();

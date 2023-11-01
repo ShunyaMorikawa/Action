@@ -21,6 +21,7 @@ class CMap;
 class CBg;
 class CTime;
 class CItem;
+class CScore;
 
 //========================================
 //マクロ
@@ -61,6 +62,7 @@ private:
 	static CBg *m_pBg;					//背景のポインタ
 	static CTime *m_pTime;				//タイムのポインタ
 	static CItem *m_pItem;				//アイテムのポインタ
+	static CScore *m_pScore;			//スコアのポインタ
 	bool m_bPause;						//ポーズ状態のON/OFF
 };
 

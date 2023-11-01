@@ -102,6 +102,9 @@
     <ClInclude Include="item.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="score.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -189,6 +192,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="item.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="score.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

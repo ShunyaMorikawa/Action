@@ -38,11 +38,14 @@ CItem::~CItem()
 //========================================
 CItem *CItem::Create(D3DXVECTOR3 pos)
 {
-	//CLife型のポインタ
+	//CItem型のポインタ
 	CItem *pItem = nullptr;
 
 	if (pItem == nullptr)
 	{//pItemがnullptr
+		//インスタンス生成
+		pItem = new CItem;
+
 		//初期化
 		pItem->Init();
 
@@ -68,7 +71,7 @@ HRESULT CItem::Init(void)
 		return E_FAIL;
 	}
 
-	//テクスチャ
+	//テクスチャ割り当て
 	BindTexture(pTexture->Regist(ITEM_LIFE_TEX));
 
 	//アイテムの大きさ

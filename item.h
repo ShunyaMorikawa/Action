@@ -17,7 +17,6 @@
 #define ITEM_SIZE	(15.0f)		//アイテムのサイズ
 
 #define ITEM_LIFE_TEX	"data\\texture\\item_life.png"
-#define ITEM_BULLET_TEX	"data\\texture\\item_bullet.png"
 
 //========================================
 //アイテムクラス
