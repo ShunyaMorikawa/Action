@@ -64,6 +64,7 @@ private:
 	static CItem *m_pItem;				//アイテムのポインタ
 	static CScore *m_pScore;			//スコアのポインタ
 	bool m_bPause;						//ポーズ状態のON/OFF
+	int m_nCounter;
 };
 
 #endif

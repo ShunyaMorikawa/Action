@@ -90,12 +90,6 @@ void CCamera::Update(void)
 	//CDebugProc型ポインタ
 	CDebugProc *pDebugProc = CManager::GetInstance()->GetDebugProc();
 
-	//カメラの移動
-	//Move();
-
-	//視点の移動
-	//CameraMoveV();
-
 	//カメラの追従
 	following();
 

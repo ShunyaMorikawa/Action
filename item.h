@@ -7,6 +7,7 @@
 #include "main.h"
 #include "billboard.h"
 #include "player.h"
+#include "score.h"
 
 #ifndef _ITEM_H
 #define _ITEM_H
@@ -27,18 +28,18 @@ public:
 	CItem();	//コンストラクタ
 	~CItem();	//デストラクタ
 
-				//メンバ関数
+	//メンバ関数
 	static CItem *Create(D3DXVECTOR3 pos);
 	HRESULT Init() override;
 	void Uninit(void) override;
 	void Update(void) override;
 	void Draw(void) override;
 
-	float GetSize(void) { return 25.0f; }		//敵の大きさ
+	float GetSize(void) { return 5.0f; }		//敵の大きさ
 
 protected:
 
-	bool CollisionPlayer(void);
+	void CollisionPlayer(void);
 
 private:
 	//メンバ変数

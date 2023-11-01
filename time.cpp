@@ -16,7 +16,7 @@
 #define TIME_SPACE		(40.0f)		//タイムの桁数毎の間隔
 #define TIME_POSX		(900.0f)	//タイムのX座標
 #define TIME_POSY		(35.0f)		//タイムのY座標
-#define TIME_VALUE		(120)		//タイムの値
+#define TIME_VALUE		(60)		//タイムの値
 
 //========================================
 //コンストラクタ

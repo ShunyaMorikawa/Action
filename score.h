@@ -31,8 +31,8 @@ public:
 	void Update(void);
 	void Draw(void);
 
-	void SetScore(int nScore);
-	void AddScore(int nScore) { SetScore(m_Score + nScore); }
+	static void SetScore(int nScore);
+	static void AddScore(int nScore) { SetScore(m_Score + nScore); }
 	int GetScore(void) { return m_Score; }
 
 	void SetVertex(void);
@@ -43,7 +43,7 @@ public:
 private:
 	//メンバ変数
 	static CNumber *m_apNumber[MAX_SCORE];		//CNumberの配列
-	int m_Score;		//スコアの値
+	static int m_Score;		//スコアの値
 	D3DXVECTOR3 m_pos;		//スコアの位置
 	int m_nIdxTexture;		//テクスチャの番号
 	int m_nPatternAnim;		//スコアパターンNo,

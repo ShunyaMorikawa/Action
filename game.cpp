@@ -193,7 +193,9 @@ void CGame::Update(void)
 	CInputKeyboard *pInputKeyboard = nullptr;
 	pInputKeyboard = CManager::GetInstance()->GetInputKeyboard();	//キーボードの情報取得
 
-	if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
+	m_nCounter++;
+
+	if (m_nCounter >= 3600)
 	{
 		CManager::SetMode(CScene::MODE_RESULT);
 	}

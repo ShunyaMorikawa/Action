@@ -94,6 +94,7 @@ void CItem::Uninit(void)
 //========================================
 void CItem::Update(void)
 {
+	CollisionPlayer();
 }
 
 //========================================
@@ -108,7 +109,7 @@ void CItem::Draw(void)
 //========================================
 //プレイヤーとの当たり判定
 //========================================
-bool CItem::CollisionPlayer(void)
+void CItem::CollisionPlayer(void)
 {
 	//変数宣言
 	float fLength;		//長さ
@@ -125,5 +126,10 @@ bool CItem::CollisionPlayer(void)
 	//ベクトル代入
 	fLength = D3DXVec3Length(&vec);
 
-	return fLength <= ITEM_SIZE;
+	if (fLength <= ITEM_SIZE)
+	{
+		CScore::AddScore(10);
+
+		CBillboard::Uninit();
+	}
 }
