@@ -131,5 +131,6 @@ void CItem::CollisionPlayer(void)
 		CScore::AddScore(10);
 
 		CBillboard::Uninit();
+
 	}
 }
